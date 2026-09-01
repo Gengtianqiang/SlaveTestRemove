@@ -19,9 +19,9 @@
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
 #include "spi.h"
-#include "spiflash/bsp_spiflash.h"
-/* USER CODE BEGIN 0 */
 
+/* USER CODE BEGIN 0 */
+#include "spiflash/bsp_spiflash.h"
 /* USER CODE END 0 */
 
 SPI_HandleTypeDef hspi1;
