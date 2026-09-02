@@ -1317,6 +1317,8 @@ void BackToInitTransition(void)
 void SetALStatus(UINT8 alStatus, UINT16 alStatusCode)
 {
     UINT16 Value = alStatusCode;
+    if ((nAlStatus & STATE_MASK) != (alStatus & STATE_MASK) || alStatusCode != 0)
+        printf("[ECAT] AL status 0x%02X -> 0x%02X code=0x%04X\r\n", nAlStatus, alStatus, alStatusCode);
 
     /*update global status variable if required*/
     if(nAlStatus != alStatus)
@@ -1362,6 +1364,11 @@ void AL_ControlInd(UINT8 alControl, UINT16 alStatusCode)
     UINT16        result = 0;
     UINT8            bErrAck = 0;
     UINT8         stateTrans;
+    if ((alControl & STATE_MASK) == STATE_SAFEOP || alStatusCode != 0)
+    {
+        printf("[ECAT] AL_ControlInd cur=0x%02X ctl=0x%02X code=0x%04X\r\n",
+               nAlStatus, alControl, alStatusCode);
+    }
     /*deactivate ESM timeout counter*/
     EsmTimeoutCounter = -1;
     bApplEsmPending = TRUE;
@@ -2135,6 +2142,7 @@ void CheckIfEcatError(void)
 
          if (bEcatOutputUpdateRunning)
          {
+            printf("[ECAT] SM watchdog expired Wd=0x%04X out=%u\r\n", WdStatusOK, nPdOutputSize);
             AL_ControlInd(STATE_SAFEOP, ALSTATUSCODE_SMWATCHDOG);
             return;
          }
@@ -2154,11 +2162,13 @@ void CheckIfEcatError(void)
            /*Slave is in OP state*/
            if(!bDcRunning)
            {
+               printf("[ECAT] fatal DC sync error\r\n");
                AL_ControlInd(STATE_SAFEOP, ALSTATUSCODE_FATALSYNCERROR);
                return;
            }
            else if(!bSmSyncSequenceValid)
            {
+               printf("[ECAT] DC sync sequence error\r\n");
                AL_ControlInd(STATE_SAFEOP, ALSTATUSCODE_SYNCERROR);
                return;
            }

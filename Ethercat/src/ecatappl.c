@@ -369,6 +369,10 @@ void PDI_Isr(void)
 
 void Sync0_Isr(void)
 {
+     static UINT32 sync0Count = 0;
+     sync0Count++;
+     if ((sync0Count % 1000) == 0)
+         printf("[ECAT] SYNC0 alive count=%lu\r\n", (unsigned long)sync0Count);
      Sync0WdCounter = 0;
 
     if(bDcSyncActive)
