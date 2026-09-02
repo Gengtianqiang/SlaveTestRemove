@@ -26,7 +26,7 @@ SPI_HandleTypeDef hspix;
 */
 void MX_SPIFlash_Init(void)
 {
-  hspix.Instance = SPI3;
+  hspix.Instance = SPI1;
 //   __HAL_RCC_AFIO_CLK_ENABLE();
 //   __HAL_AFIO_REMAP_SWJ_NOJTAG();
   hspix.Init.Mode = SPI_MODE_MASTER;//Ö÷Ä£Ê½

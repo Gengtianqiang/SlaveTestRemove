@@ -92,19 +92,18 @@ void SystemClock_Config(void);
 //   MX_SPI1_Init();
 //   MX_TIM2_Init();
 //   MX_UART4_Init();
-//   MX_SPI3_Init();
 //   /* USER CODE BEGIN 2 */
 
 //   /* USER CODE END 2 */
 
 //   /* Infinite loop */
 //   /* USER CODE BEGIN WHILE */
-// //   while (1)
-// //   {
+// // //   while (1)
+// // //   {
 //     /* USER CODE END WHILE */
 
 //     /* USER CODE BEGIN 3 */
-// //   }
+// // //   }
 //   /* USER CODE END 3 */
 // }
 
