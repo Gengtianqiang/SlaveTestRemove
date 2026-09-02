@@ -304,6 +304,7 @@ void PDI_Isr(void)
         /* Outputs were updated, set flag for watchdog monitoring */
         bEcatFirstOutputsReceived = TRUE;
 
+        
 
         /*
             handle output process data event
