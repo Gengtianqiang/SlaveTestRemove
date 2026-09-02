@@ -7,27 +7,27 @@
 #include "bsp_len9252.h"
 /* 类型定义 ------------------------------------------------------------------*/
 /* 宏定义 --------------------------------------------------------------------*/
-#define FLASH_SPIx                                 SPI1
+#define FLASH_SPIx                                 SPI3
 
-#define FLASH_SPIx_RCC_CLK_ENABLE()                __HAL_RCC_SPI1_CLK_ENABLE()
+#define FLASH_SPIx_RCC_CLK_ENABLE()                __HAL_RCC_SPI3_CLK_ENABLE()
 
-#define GPIO_AFx_SPIx                              GPIO_AF5_SPI1
+#define GPIO_AFx_SPIx                              GPIO_AF6_SPI3
 
-#define FLASH_SPI_SCK_ClK_ENABLE()                 __HAL_RCC_GPIOA_CLK_ENABLE()
-#define FLASH_SPI_SCK_PORT                         GPIOA
-#define FLASH_SPI_SCK_PIN                          GPIO_PIN_5
+#define FLASH_SPI_SCK_ClK_ENABLE()                 __HAL_RCC_GPIOB_CLK_ENABLE()
+#define FLASH_SPI_SCK_PORT                         GPIOB
+#define FLASH_SPI_SCK_PIN                          GPIO_PIN_3
 
-#define FLASH_SPI_MISO_ClK_ENABLE()                __HAL_RCC_GPIOA_CLK_ENABLE()
-#define FLASH_SPI_MISO_PORT                        GPIOA
-#define FLASH_SPI_MISO_PIN                         GPIO_PIN_6
+#define FLASH_SPI_MISO_ClK_ENABLE()                __HAL_RCC_GPIOB_CLK_ENABLE()
+#define FLASH_SPI_MISO_PORT                        GPIOB
+#define FLASH_SPI_MISO_PIN                         GPIO_PIN_4
 
-#define FLASH_SPI_MOSI_ClK_ENABLE()                __HAL_RCC_GPIOA_CLK_ENABLE()
-#define FLASH_SPI_MOSI_PORT                        GPIOA
-#define FLASH_SPI_MOSI_PIN                         GPIO_PIN_7
+#define FLASH_SPI_MOSI_ClK_ENABLE()                __HAL_RCC_GPIOC_CLK_ENABLE()
+#define FLASH_SPI_MOSI_PORT                        GPIOC
+#define FLASH_SPI_MOSI_PIN                         GPIO_PIN_12
 
-#define FLASH_SPI_CS_ClK_ENABLE()                  __HAL_RCC_GPIOA_CLK_ENABLE()
-#define FLASH_SPI_CS_PORT                          GPIOA
-#define FLASH_SPI_CS_PIN                           GPIO_PIN_8
+#define FLASH_SPI_CS_ClK_ENABLE()                  __HAL_RCC_GPIOB_CLK_ENABLE()
+#define FLASH_SPI_CS_PORT                          GPIOB
+#define FLASH_SPI_CS_PIN                           GPIO_PIN_5
 
 #define DESELECT_SPI                          HAL_GPIO_WritePin(FLASH_SPI_CS_PORT, FLASH_SPI_CS_PIN, GPIO_PIN_SET)
 #define SELECT_SPI                            HAL_GPIO_WritePin(FLASH_SPI_CS_PORT, FLASH_SPI_CS_PIN, GPIO_PIN_RESET)

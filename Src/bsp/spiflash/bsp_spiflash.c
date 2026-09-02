@@ -26,7 +26,9 @@ SPI_HandleTypeDef hspix;
 */
 void MX_SPIFlash_Init(void)
 {
-  hspix.Instance = SPI1;
+  hspix.Instance = SPI3;
+//   __HAL_RCC_AFIO_CLK_ENABLE();
+//   __HAL_AFIO_REMAP_SWJ_NOJTAG();
   hspix.Init.Mode = SPI_MODE_MASTER;//主模式
   hspix.Init.Direction = SPI_DIRECTION_2LINES;//双向
   hspix.Init.DataSize = SPI_DATASIZE_8BIT;//8位数据帧长度
@@ -51,7 +53,7 @@ void MX_SPIFlash_Init(void)
 // void HAL_SPI_MspInit(SPI_HandleTypeDef* hspi)
 // {
 //   GPIO_InitTypeDef GPIO_InitStruct;
-//   if(hspi->Instance==SPI1)
+//   if(hspi->Instance==SPI3)
 //   {
 //     /* SPI外设时钟使能 */
 //     FLASH_SPIx_RCC_CLK_ENABLE();

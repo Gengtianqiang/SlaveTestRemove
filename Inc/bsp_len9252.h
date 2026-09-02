@@ -118,7 +118,7 @@ typedef struct {
 typedef struct {
     len9252_tatus_t     (*pf_exti0_init)(void);                       /* EXTI0 initialization | 外部中断0初始化 */
     len9252_tatus_t     (*pf_exti1_init)(void);                       /* EXTI1 initialization | 外部中断1初始化 */
-    len9252_tatus_t     (*pf_exti3_init)(void);                       /* EXTI3 initialization | 外部中断3初始化 */
+    len9252_tatus_t     (*pf_exti2_init)(void);                       /* EXTI2 initialization | 外部中断2初始化 */
 
     len9252_tatus_t    (*pf_exti0_clear)(void);                       /* Clear EXTI0 flag | 清除外部中断0标志 */
     void (*pf_exti1_isr)                (void);                                   /* EXTI1 interrupt service | 外部中断1服务函数 */
@@ -127,9 +127,9 @@ typedef struct {
     len9252_tatus_t  (*pf_exti1_it_open)(void);                    /* Enable EXTI1 interrupt | 使能外部中断1 */
     len9252_tatus_t (*pf_exti1_it_close)(void);                   /* Disable EXTI1 interrupt | 关闭外部中断1 */
 
-    len9252_tatus_t    (*pf_exti3_clear)(void);                      /* Clear EXTI3 flag | 清除外部中断3标志 */
-    len9252_tatus_t  (*pf_exti3_it_open)(void);                    /* Enable EXTI3 interrupt | 使能外部中断3 */
-    len9252_tatus_t (*pf_exti3_it_close)(void);                   /* Disable EXTI3 interrupt | 关闭外部中断3 */
+    len9252_tatus_t    (*pf_exti2_clear)(void);                      /* Clear EXTI2 flag | 清除外部中断2标志 */
+    len9252_tatus_t  (*pf_exti2_it_open)(void);                    /* Enable EXTI2 interrupt | 使能外部中断2 */
+    len9252_tatus_t (*pf_exti2_it_close)(void);                   /* Disable EXTI2 interrupt | 关闭外部中断2 */
 } len9252_exti_t;
 
 //******************************** Time Interface ********************************//

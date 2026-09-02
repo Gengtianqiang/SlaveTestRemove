@@ -128,9 +128,9 @@ UALEVENT;
 ------
 -----------------------------------------------------------------------------------------*/
 #if AL_EVENT_ENABLED
-#define    INIT_ESC_INT           len9252_handle.south_api->exti_api->pf_exti0_init();	//PD4		
+#define    INIT_ESC_INT           len9252_handle.south_api->exti_api->pf_exti0_init();	//PB0		
 #define    EcatIsr                len9252_handle.south_api->exti_api->pf_exti0_isr
-#define    ACK_ESC_INT         		len9252_handle.south_api->exti_api->pf_exti0_clear();	//PD4
+#define    ACK_ESC_INT         		len9252_handle.south_api->exti_api->pf_exti0_clear();	//PB0
 
 #endif //#if AL_EVENT_ENABLED
 
@@ -140,15 +140,15 @@ UALEVENT;
 ------
 -----------------------------------------------------------------------------------------*/
 #if DC_SUPPORTED && _STM32_IO8
-#define    INIT_SYNC0_INT                  len9252_handle.south_api->exti_api->pf_exti3_init();	//PE14
+#define    INIT_SYNC0_INT                  len9252_handle.south_api->exti_api->pf_exti2_init();	//PB2
 
-#define    DISABLE_SYNC0_INT             len9252_handle.south_api->exti_api->pf_exti3_it_close();	  // {(_INT3IE)=0;}//disable interrupt source INT3
-#define    ENABLE_SYNC0_INT               len9252_handle.south_api->exti_api->pf_exti3_it_open()	// {(_INT3IE) = 1;} //enable interrupt source INT3
-#define    ACK_SYNC0_INT                  len9252_handle.south_api->exti_api->pf_exti3_clear();	//PE14
+#define    DISABLE_SYNC0_INT             len9252_handle.south_api->exti_api->pf_exti2_it_close();	  // {(_INT3IE)=0;}//disable interrupt source INT3
+#define    ENABLE_SYNC0_INT               len9252_handle.south_api->exti_api->pf_exti2_it_open()	// {(_INT3IE) = 1;} //enable interrupt source INT3
+#define    ACK_SYNC0_INT                  len9252_handle.south_api->exti_api->pf_exti2_clear();	//PB2
 
 /*ECATCHANGE_START(V5.10) HW3*/
 
-#define    INIT_SYNC1_INT                  len9252_handle.south_api->exti_api->pf_exti1_init(); //PE13
+#define    INIT_SYNC1_INT                  len9252_handle.south_api->exti_api->pf_exti1_init(); //PB1
 
 #define    DISABLE_SYNC1_INT                 len9252_handle.south_api->exti_api->pf_exti1_it_close();// {(_INT4IE)=0;}//disable interrupt source INT4
 #define    ENABLE_SYNC1_INT                 len9252_handle.south_api->exti_api->pf_exti1_it_open() //{(_INT4IE) = 1;} //enable interrupt source INT4
@@ -754,7 +754,7 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
     ACK_SYNC1_INT;		
 		     return;
 	}
-  else if(GPIO_Pin==GPIO_PIN_3)
+  else if(GPIO_Pin==GPIO_PIN_2)
   {	
     Sync0_Isr();
     /* reset the interrupt flag */

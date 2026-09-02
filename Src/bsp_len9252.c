@@ -237,15 +237,15 @@ len9252_tatus_t my_exti1_init(void)
 }
 
 /**
- * @brief LEN9252 EXTI3 init function | LEN9252外部中断3初始化函数
- * @details Default implementation of EXTI3 init | 外部中断3初始化的默认实现
+ * @brief LEN9252 EXTI2 init function | LEN9252外部中断2初始化函数
+ * @details Default implementation of EXTI2 init | 外部中断2初始化的默认实现
  * @param[in] none
  * @return len9252_tatus_t : Operation status (EC_OK for success) | 操作状态（EC_OK表示成功）
  * @note User can override this function with custom implementation | 用户可通过自定义实现覆盖此函数
  */
-len9252_tatus_t my_exti3_init(void)
+len9252_tatus_t my_exti2_init(void)
 {
-    EXTI3_Configuration();
+    EXTI2_Configuration();
     // 用户需在实例化时提供具体的外部中断初始化函数实现
     return EC_OK;
 }
@@ -279,29 +279,29 @@ len9252_tatus_t my_exti1_close(void)
 }
 
 /**
- * @brief LEN9252 EXTI3 interrupt open function | LEN9252外部中断3使能函数
- * @details Default implementation of EXTI3 interrupt open | 外部中断3使能的默认实现
+ * @brief LEN9252 EXTI2 interrupt open function | LEN9252外部中断2使能函数
+ * @details Default implementation of EXTI2 interrupt open | 外部中断2使能的默认实现
  * @param[in] none
  * @return len9252_tatus_t : Operation status (EC_OK for success) | 操作状态（EC_OK表示成功）
  * @note User can override this function with custom implementation | 用户可通过自定义实现覆盖此函数
  */
-len9252_tatus_t my_exti3_open(void)
+len9252_tatus_t my_exti2_open(void)
 {
-    NVIC_EnableIRQ(EXTI3_IRQn);
+    NVIC_EnableIRQ(EXTI2_IRQn);
     // 用户需在实例化时提供具体的外部中断初始化函数实现
     return EC_OK;
 }
 
 /**
- * @brief LEN9252 EXTI3 interrupt close function | LEN9252外部中断3关闭函数
- * @details Default implementation of EXTI3 interrupt close | 外部中断3关闭的默认实现
+ * @brief LEN9252 EXTI2 interrupt close function | LEN9252外部中断2关闭函数
+ * @details Default implementation of EXTI2 interrupt close | 外部中断2关闭的默认实现
  * @param[in] none
  * @return len9252_tatus_t : Operation status (EC_OK for success) | 操作状态（EC_OK表示成功）
  * @note User can override this function with custom implementation | 用户可通过自定义实现覆盖此函数
  */
-len9252_tatus_t my_exti3_close(void)
+len9252_tatus_t my_exti2_close(void)
 {
-    NVIC_DisableIRQ(EXTI3_IRQn);
+    NVIC_DisableIRQ(EXTI2_IRQn);
     // 用户需在实例化时提供具体的外部中断初始化函数实现
     return EC_OK;
 }
@@ -334,16 +334,16 @@ len9252_tatus_t my_exti1_clear(void)
 }
 
 /**
- * @brief LEN9252 EXTI3 clear flag function | LEN9252外部中断3清除标志函数
- * @details Default implementation of EXTI3 clear flag | 外部中断3清除标志的默认实现
+ * @brief LEN9252 EXTI2 clear flag function | LEN9252外部中断2清除标志函数
+ * @details Default implementation of EXTI2 clear flag | 外部中断2清除标志的默认实现
  * @param[in] none
  * @return len9252_tatus_t : Operation status (EC_OK for success) | 操作状态（EC_OK表示成功）
  * @note User can override this function with custom implementation | 用户可通过自定义实现覆盖此函数
  */
-len9252_tatus_t my_exti3_clear(void)
+len9252_tatus_t my_exti2_clear(void)
 {
-    __HAL_GPIO_EXTI_CLEAR_IT(GPIO_PIN_3);
-    // 用户需在实例化时提供具体的exti3清除函数实现
+    __HAL_GPIO_EXTI_CLEAR_IT(GPIO_PIN_2);
+    // 用户需在实例化时提供具体的exti2清除函数实现
     return EC_OK;
 }
 
@@ -497,15 +497,15 @@ len9252_timer_t timer_api = {
 len9252_exti_t exti_api = {
     .pf_exti0_clear    = my_exti0_clear,      /* EXTI0 clear flag function | 外部中断0清除标志函数 */
     .pf_exti1_clear    = my_exti1_clear,      /* EXTI1 clear flag function | 外部中断1清除标志函数 */
-    .pf_exti3_clear    = my_exti3_clear,      /* EXTI3 clear flag function | 外部中断3清除标志函数 */
+    .pf_exti2_clear    = my_exti2_clear,      /* EXTI2 clear flag function | 外部中断2清除标志函数 */
     .pf_exti0_init     = my_exti0_init,       /* EXTI0 init function | 外部中断0初始化函数 */
     .pf_exti1_init     = my_exti1_init,       /* EXTI1 init function | 外部中断1初始化函数 */
-    .pf_exti3_init     = my_exti3_init,       /* EXTI3 init function | 外部中断3初始化函数 */
+    .pf_exti2_init     = my_exti2_init,       /* EXTI2 init function | 外部中断2初始化函数 */
     .pf_exti1_isr      = EC_EXTI1_ISR,        /* EXTI1 interrupt service function | 外部中断1服务函数 */
     .pf_exti1_it_open  = my_exti1_open,       /* EXTI1 interrupt open function | 外部中断1使能函数 */
     .pf_exti1_it_close = my_exti1_close,      /* EXTI1 interrupt close function | 外部中断1关闭函数 */
-    .pf_exti3_it_open  = my_exti3_open,       /* EXTI3 interrupt open function | 外部中断3使能函数 */
-    .pf_exti3_it_close = my_exti3_close,      /* EXTI3 interrupt close function | 外部中断3关闭函数 */
+    .pf_exti2_it_open  = my_exti2_open,       /* EXTI2 interrupt open function | 外部中断2使能函数 */
+    .pf_exti2_it_close = my_exti2_close,      /* EXTI2 interrupt close function | 外部中断2关闭函数 */
 };
 
 /**
@@ -683,14 +683,14 @@ void len9252_all_unit_test(LEN9252_t* self)
 
     self->south_api->exti_api->pf_exti0_clear();
     self->south_api->exti_api->pf_exti1_clear();
-    self->south_api->exti_api->pf_exti3_clear();
+    self->south_api->exti_api->pf_exti2_clear();
     self->south_api->exti_api->pf_exti0_init();
     self->south_api->exti_api->pf_exti1_init();
-    self->south_api->exti_api->pf_exti3_init();
+    self->south_api->exti_api->pf_exti2_init();
     self->south_api->exti_api->pf_exti1_it_open();
     self->south_api->exti_api->pf_exti1_it_close();
-    self->south_api->exti_api->pf_exti3_it_open();
-    self->south_api->exti_api->pf_exti3_it_close();
+    self->south_api->exti_api->pf_exti2_it_open();
+    self->south_api->exti_api->pf_exti2_it_close();
 }
 
 //******************************** Defines **********************************//

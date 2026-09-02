@@ -15,7 +15,7 @@
 /* º¯ÊýÉùÃ÷ ------------------------------------------------------------------*/
 void EXTI0_Configuration(void);
 void EXTI1_Configuration(void);
-void EXTI3_Configuration(void);
+void EXTI2_Configuration(void);
 void RST_Configuration(void);
 
 #endif  // __BSP_GPIO_H__
