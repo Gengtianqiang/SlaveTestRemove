@@ -2392,6 +2392,8 @@ void ECAT_Main(void)
     UINT16 ALEventReg;
     UINT16 EscAlControl = 0x0000;
     UINT16 sm1Activate = SM_SETTING_ENABLE_VALUE;
+    static UINT32 mainLoopCounter = 0;
+    static UINT8 lastAlState = 0xFF;
 
     /* check if services are stored in the mailbox */
     MBX_Main();
@@ -2408,6 +2410,22 @@ void ECAT_Main(void)
     /* Read AL Event-Register from ESC */
     ALEventReg = HW_GetALEventRegister();
     ALEventReg = SWAPWORD(ALEventReg);
+
+    /* Log AL state transitions once from the foreground. */
+    if ((nAlStatus & STATE_MASK) != lastAlState)
+    {
+        printf("[ECAT] state changed: 0x%02X -> 0x%02X\r\n",
+               lastAlState, nAlStatus);
+        lastAlState = nAlStatus & STATE_MASK;
+    }
+
+    /* Low-rate foreground heartbeat; intentionally kept out of ISRs. */
+    if ((++mainLoopCounter % 1000U) == 0U)
+    {
+        printf("[ECAT] main alive state=0x%02X sync0=%u wd=%u dc=%u\r\n",
+               nAlStatus, u16SmSync0Counter, Sync0WdCounter,
+               bDcSyncActive ? 1U : 0U);
+    }
 
 
     if ((ALEventReg & AL_CONTROL_EVENT) && !bEcatWaitForAlControlRes)
